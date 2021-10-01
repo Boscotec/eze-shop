@@ -22,9 +22,12 @@ export const Product = observer(({ data, size }) => {
             <ProductName>{name || ''}</ProductName>
             <ProductText>{`${carrier || ''}${(carrier && storageSize) ? ' | ' : '' }${storageSize || ''}`}</ProductText>
             <Text>Unit price</Text>
-            <ProductAmount>{`$ ${price}`}</ProductAmount>
-            <ProductText>{`${quantity} Available`}</ProductText>
-
+            {price &&
+                <ProductAmount>{`$ ${price}`}</ProductAmount>
+            }
+            {quantity &&
+                <ProductText>{`${quantity} Available`}</ProductText>
+            }
             <Button margin="16px 20px 0">BUY</Button>
         </GridItem>
     );

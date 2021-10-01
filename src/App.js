@@ -1,6 +1,7 @@
 import { ProductList } from './components/productList';
 import { observer } from "mobx-react-lite"
 import { useEffect } from 'react';
+import SkeletonCard from './components/skeleton';
 
 const App = observer(({ store }) => {
   
@@ -12,11 +13,14 @@ const App = observer(({ store }) => {
         <div className="App">
             <header className="App-header"/>
 
-            <ProductList
-                data={store.products}
-                size={{ width: '115px', height: '98px' }}
-            />
-
+            {!store.products.length ? (
+                <SkeletonCard />
+            ) : (
+              <ProductList
+                  data={store.products}
+                  size={{ width: '115px', height: '98px' }}
+              />
+            )}
         </div>
     );
 })
